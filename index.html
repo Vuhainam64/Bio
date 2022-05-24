@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>Nam's Biolink</title>
+    <link rel="shortcut icon" href="./assets/me.jpg" type="image/x-icon" />
+  </head>
+  <body>
+    <audio src="./sound/sound.mp3" autoplay></audio>
+    <div id="particles-js"></div>
+    <div class="container">
+      <img class="profile" src="./assets/me.jpg" />
+
+      <p class="user-name">
+        <a style="text-decoration: none" href="https://www.instagram.com/vuhainam272/">@vuhainam272</a>
+      </p>
+      <p class="subtitle">Studied at FPT University HCM</p>
+      <p>Do you want to eat mushrooms 🍄</p>
+
+      <div class="info-container">
+
+        <div class="content">
+          <div class="main-content">
+            </div>
+            <a
+              href="http://catmeo.me/1/FPT-General/"
+              class="link highlight"
+            >
+              FPT General
+            </a>
+            <a
+              href="http://catmeo.me/1/Game-Lo-to-master/"
+              class="link highlight"
+            >
+              Bingo Game - Hò Lô Tô
+            </a>
+            <a
+              href="http://catmeo.me/1/web-for-crush-master/"
+              class="link highlight"
+            >
+              Hey Crushh
+            </a>
+            
+            <div class="circle-button">
+              <div class="circle">
+                <ul>
+                  <li class="github">
+                    <a
+                      href="https://www.facebook.com/vuhainam272/"
+                      target="_blank"
+                      class="fab fa-facebook"
+                    ></a>
+                  </li>
+                  <li class="codepen">
+                    <a href="mailto:vuhainam272@gmail.com" 
+                    target="_blank"
+                    class="fab fa-google"
+                    ></a>
+                  </li>
+                  <li class="instagram">
+                    <a
+                      href="https://www.instagram.com/vuhainam272/"
+                      target="_blank"
+                      class="fab fa-instagram"
+                    ></a>
+                  </li>
+                  <li class="twitter">
+                    <a
+                      href="https://twitter.com/VHiNam63894606"
+                      target="_blank"
+                      class="fab fa-twitter"
+                    ></a>
+                  </li>
+                  <li class="reddit">
+                    <a
+                      href="https://www.pinterest.com/vuhainam272"
+                      target="_blank"
+                      class="fab fa-pinterest"
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    feather.replace();
+  </script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: 1200,
+          density: { enable: true, value_area: 789.1476416322727 }
+        },
+        color: {
+          value: "#ffffff"
+        },
+        shape: {
+          type: "circle",
+          stroke: { width: 0, color: "#000000" },
+          polygon: { nb_sides: 5 },
+          image: { src: "img/github.svg", width: 100, height: 100 }
+        },
+        opacity: {
+          value: 0.48927153781200905,
+          random: false,
+          anim: { enable: true, speed: 0.2, opacity_min: 0, sync: false }
+        },
+        size: {
+          value: 2,
+          random: true,
+          anim: { enable: true, speed: 2, size_min: 0, sync: false }
+        },
+        line_linked: {
+          enable: false,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 0.2,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: { enable: false, rotateX: 600, rotateY: 1200 }
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "bubble"
+          },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 400, line_linked: { opacity: 1 } },
+          bubble: {
+            distance: 83.91608391608392,
+            size: 1,
+            duration: 3,
+            opacity: 1,
+            speed: 3
+          },
+          repulse: { distance: 200, duration: 0.4 },
+          push: { particles_nb: 4 },
+          remove: {
+            particles_nb: 2
+          }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+  <script>
+    const setupButton = document.getElementById("setup-button");
+    const goBackButton = document.getElementById("go-back-button");
+
+    setupButton.addEventListener("click", showContent);
+    goBackButton.addEventListener("click", hideContent);
+
+    function showContent() {
+      document.getElementById("secondary-content").classList.remove("hide");
+      document.getElementById("secondary-content").classList.add("show");
+    }
+
+    function hideContent() {
+      document.getElementById("secondary-content").classList.remove("show");
+      document.getElementById("secondary-content").classList.add("hide");
+    }
+
+  </script>
+</html>

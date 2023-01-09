@@ -16,9 +16,9 @@
         <hr/>
         <form action="calculator">
             Num1:<br/>
-            <input type="text" name="num1"/><br/>            
+            <input type="text" name="num1" value="${num1}"/><br/>            
             Num2:<br/>
-            <input type="text" name="num2"/><br/>
+            <input type="text" name="num2" value="${num2}"/><br/>
             <input type="submit" name="op" value="Add"/>
             <input type="submit" name="op" value="Sub"/>
         </form>

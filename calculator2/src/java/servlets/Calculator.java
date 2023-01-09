@@ -44,7 +44,10 @@ public class Calculator extends HttpServlet {
             default:
                 throw new AssertionError();
         }
-        
+
+        request.setAttribute("num1", num1);
+        request.setAttribute("num2", num2);
+
         request.setAttribute("ketqua", result);
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }

@@ -56,9 +56,13 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <hr/>\n");
       out.write("        <form action=\"calculator\">\n");
       out.write("            Num1:<br/>\n");
-      out.write("            <input type=\"text\" name=\"num1\"/><br/>            \n");
+      out.write("            <input type=\"text\" name=\"num1\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${num1}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"/><br/>            \n");
       out.write("            Num2:<br/>\n");
-      out.write("            <input type=\"text\" name=\"num2\"/><br/>\n");
+      out.write("            <input type=\"text\" name=\"num2\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${num2}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"/><br/>\n");
       out.write("            <input type=\"submit\" name=\"op\" value=\"Add\"/>\n");
       out.write("            <input type=\"submit\" name=\"op\" value=\"Sub\"/>\n");
       out.write("        </form>\n");

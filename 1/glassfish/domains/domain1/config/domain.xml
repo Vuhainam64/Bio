@@ -48,15 +48,24 @@
     </jdbc-connection-pool>
     <connector-connection-pool max-pool-size="250" resource-adapter-name="jmsra" steady-pool-size="1" name="jms/__defaultConnectionFactory-Connection-Pool" connection-definition-name="javax.jms.ConnectionFactory"></connector-connection-pool>
     <connector-resource pool-name="jms/__defaultConnectionFactory-Connection-Pool" object-type="system-all-req" jndi-name="jms/__defaultConnectionFactory"></connector-resource>
+    <context-service object-type="system-all" jndi-name="concurrent/__defaultContextService"></context-service>
+    <managed-executor-service object-type="system-all" jndi-name="concurrent/__defaultManagedExecutorService"></managed-executor-service>
+    <managed-scheduled-executor-service object-type="system-all" jndi-name="concurrent/__defaultManagedScheduledExecutorService"></managed-scheduled-executor-service>
+    <managed-thread-factory object-type="system-all" jndi-name="concurrent/__defaultManagedThreadFactory"></managed-thread-factory>
   </resources>
   <servers>
     <server config-ref="server-config" name="server">
       <application-ref ref="WebApplication1" virtual-servers="server"></application-ref>
       <application-ref ref="caculator1" virtual-servers="server"></application-ref>
+      <application-ref ref="calculator2" virtual-servers="server"></application-ref>
       <resource-ref ref="jdbc/__TimerPool"></resource-ref>
       <resource-ref ref="jdbc/__default"></resource-ref>
       <resource-ref ref="jdbc/sample"></resource-ref>
       <resource-ref ref="jms/__defaultConnectionFactory"></resource-ref>
+      <resource-ref ref="concurrent/__defaultContextService"></resource-ref>
+      <resource-ref ref="concurrent/__defaultManagedExecutorService"></resource-ref>
+      <resource-ref ref="concurrent/__defaultManagedScheduledExecutorService"></resource-ref>
+      <resource-ref ref="concurrent/__defaultManagedThreadFactory"></resource-ref>
     </server>
   </servers>
   <nodes>
@@ -457,6 +466,16 @@
       <property name="defaultAppName" value="web"></property>
       <property name="keepSessions" value="true"></property>
       <module name="caculator1">
+        <engine sniffer="security"></engine>
+        <engine sniffer="web"></engine>
+      </module>
+    </application>
+    <application context-root="/calculator2" object-type="user" name="calculator2" directory-deployed="true" location="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/calculator2/build/web/">
+      <property name="archiveType" value="war"></property>
+      <property name="appLocation" value="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/calculator2/build/web/"></property>
+      <property name="defaultAppName" value="web"></property>
+      <property name="keepSessions" value="true"></property>
+      <module name="calculator2">
         <engine sniffer="security"></engine>
         <engine sniffer="web"></engine>
       </module>

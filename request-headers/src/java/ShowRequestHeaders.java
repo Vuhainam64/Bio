@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author vuhai
  */
-public class Calculator extends HttpServlet {
+public class ShowRequestHeaders extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,36 +29,17 @@ public class Calculator extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        double num1 = Double.parseDouble(request.getParameter("num1"));
-        double num2 = Double.parseDouble(request.getParameter("num2"));
-        String op = request.getParameter("op");
-        Object result;
-        switch (op) {
-            case "Add":
-                result = num1 + num2;
-                break;
-            case "Sub":
-                result = num1 - num2;
-                break;
-            case "Mul":
-                result = num1 * num2;
-                break;
-            case "Div":
-                if (num2 == 0) {
-                    result = "Can't divide by zero";
-                }else
-                result = num1 / num2;
-                break;
-            default:
-                throw new AssertionError();
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        Enumeration headerNames = request.getHeaderNames();
+        out.println("<TABLE>");
+        while (headerNames.hasMoreElements()) {
+            String headerName = (String) headerNames.nextElement();
+            out.println("<TR><TD>" + headerName + "</TD>");
+            out.println("<TD>" + request.getHeader(headerName) + "</TD></TR>");
         }
+        out.println("</TABLE>");
 
-        request.setAttribute("num1", num1);
-        request.setAttribute("num2", num2);
-
-        request.setAttribute("ketqua", result);
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

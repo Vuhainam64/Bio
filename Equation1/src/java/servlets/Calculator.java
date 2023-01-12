@@ -30,32 +30,30 @@ public class Calculator extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        double num1 = Double.parseDouble(request.getParameter("num1"));
-        double num2 = Double.parseDouble(request.getParameter("num2"));
+        double a = Double.parseDouble(request.getParameter("a"));
+        double b = Double.parseDouble(request.getParameter("b"));
         String op = request.getParameter("op");
         Object result;
         switch (op) {
-            case "Add":
-                result = num1 + num2;
-                break;
-            case "Sub":
-                result = num1 - num2;
-                break;
-            case "Mul":
-                result = num1 * num2;
-                break;
-            case "Div":
-                if (num2 == 0) {
-                    result = "Can't divide by zero";
-                }else
-                result = num1 / num2;
+            case "Submit":
+                if (a == 0) {
+                    if (b == 0) {
+                        result = "VSN";
+                    } else {
+                        result = "VN";
+
+                    }
+                } else {
+                    result = -b/a;
+                    
+                }
                 break;
             default:
                 throw new AssertionError();
         }
 
-        request.setAttribute("num1", num1);
-        request.setAttribute("num2", num2);
+        request.setAttribute("a", a);
+        request.setAttribute("b", b);
 
         request.setAttribute("ketqua", result);
         request.getRequestDispatcher("/index.jsp").forward(request, response);

@@ -60,6 +60,7 @@
       <application-ref ref="Equation1" virtual-servers="server"></application-ref>
       <application-ref ref="method" virtual-servers="server"></application-ref>
       <application-ref ref="request-headers" virtual-servers="server"></application-ref>
+      <application-ref ref="mvc1" virtual-servers="server"></application-ref>
       <resource-ref ref="jdbc/__TimerPool"></resource-ref>
       <resource-ref ref="jdbc/__default"></resource-ref>
       <resource-ref ref="jdbc/sample"></resource-ref>
@@ -497,6 +498,16 @@
       <property name="archiveType" value="war"></property>
       <property name="defaultAppName" value="web"></property>
       <module name="request-headers">
+        <engine sniffer="security"></engine>
+        <engine sniffer="web"></engine>
+      </module>
+    </application>
+    <application context-root="/mvc1" object-type="user" name="mvc1" directory-deployed="true" location="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/mvc1/build/web/">
+      <property name="archiveType" value="war"></property>
+      <property name="appLocation" value="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/mvc1/build/web/"></property>
+      <property name="defaultAppName" value="web"></property>
+      <property name="keepSessions" value="true"></property>
+      <module name="mvc1">
         <engine sniffer="security"></engine>
         <engine sniffer="web"></engine>
       </module>

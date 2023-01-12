@@ -57,9 +57,10 @@
     <server config-ref="server-config" name="server">
       <application-ref ref="WebApplication1" virtual-servers="server"></application-ref>
       <application-ref ref="caculator1" virtual-servers="server"></application-ref>
-      <application-ref ref="calculator2" virtual-servers="server"></application-ref>
       <application-ref ref="Equation1" virtual-servers="server"></application-ref>
       <application-ref ref="method" virtual-servers="server"></application-ref>
+      <application-ref ref="request-headers" virtual-servers="server"></application-ref>
+      <application-ref ref="welcome-files" virtual-servers="server"></application-ref>
       <resource-ref ref="jdbc/__TimerPool"></resource-ref>
       <resource-ref ref="jdbc/__default"></resource-ref>
       <resource-ref ref="jdbc/sample"></resource-ref>
@@ -472,16 +473,6 @@
         <engine sniffer="web"></engine>
       </module>
     </application>
-    <application context-root="/calculator2" object-type="user" directory-deployed="true" name="calculator2" location="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/calculator2/build/web/">
-      <property name="archiveType" value="war"></property>
-      <property name="appLocation" value="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/calculator2/build/web/"></property>
-      <property name="defaultAppName" value="web"></property>
-      <property name="keepSessions" value="true"></property>
-      <module name="calculator2">
-        <engine sniffer="security"></engine>
-        <engine sniffer="web"></engine>
-      </module>
-    </application>
     <application context-root="/Equation1" object-type="user" directory-deployed="true" name="Equation1" location="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/Equation1/build/web/">
       <property name="archiveType" value="war"></property>
       <property name="appLocation" value="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/Equation1/build/web/"></property>
@@ -498,6 +489,25 @@
       <property name="defaultAppName" value="web"></property>
       <property name="keepSessions" value="true"></property>
       <module name="method">
+        <engine sniffer="security"></engine>
+        <engine sniffer="web"></engine>
+      </module>
+    </application>
+    <application context-root="/request-headers" object-type="user" name="request-headers" directory-deployed="true" location="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/request-headers/build/web/">
+      <property name="appLocation" value="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/request-headers/build/web/"></property>
+      <property name="archiveType" value="war"></property>
+      <property name="defaultAppName" value="web"></property>
+      <module name="request-headers">
+        <engine sniffer="security"></engine>
+        <engine sniffer="web"></engine>
+      </module>
+    </application>
+    <application context-root="/welcome-files" object-type="user" name="welcome-files" directory-deployed="true" location="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/welcome-files/build/web/">
+      <property name="archiveType" value="war"></property>
+      <property name="appLocation" value="file:/C:/Users/vuhai/OneDrive/Hinh/Documents/GitHub/Bio/welcome-files/build/web/"></property>
+      <property name="defaultAppName" value="web"></property>
+      <property name="keepSessions" value="true"></property>
+      <module name="welcome-files">
         <engine sniffer="security"></engine>
         <engine sniffer="web"></engine>
       </module>

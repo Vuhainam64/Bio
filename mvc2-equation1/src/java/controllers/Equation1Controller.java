@@ -1,21 +1,25 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package servlets;
+package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Equation1;
 
 /**
  *
- * @author vuhai
+ * @author PHT
  */
-public class Calculator extends HttpServlet {
+@WebServlet(name = "Equation1Controller", urlPatterns = {"/equation1"})
+public class Equation1Controller extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,33 +33,14 @@ public class Calculator extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        //Lay thong tin tu client
         double a = Double.parseDouble(request.getParameter("a"));
         double b = Double.parseDouble(request.getParameter("b"));
-        String op = request.getParameter("op");
-        Object result;
-        switch (op) {
-            case "Submit":
-                if (a == 0) {
-                    if (b == 0) {
-                        result = "VSN";
-                    } else {
-                        result = "VN";
-
-                    }
-                } else {
-                    result = -b/a;
-                    
-                }
-                break;
-            default:
-                throw new AssertionError();
-        }
-
-        request.setAttribute("a", a);
-        request.setAttribute("b", b);
-
-        request.setAttribute("ketqua", result);
+        //Tao model
+        Equation1 model = new Equation1(a, b);
+        //Luu model vao request de truyen model cho view index.jsp
+        request.setAttribute("model", model);
+        //Chuyen request & response cho view index.jsp xu ly tiep
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 

@@ -9,20 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Calculator Page</title>
+        <title>Login Page</title>
     </head>
     <body>
-        <h1>Find x (Ax+B=0)</h1>
+        <h1>Login</h1>
         <hr/>
-        <form action="calculator">
-            A:<br/>
-            <input type="number" step="0.01" name="a" value="${a}"/><br/>            
-            B:<br/>
-            <input type="number" step="0.01" name="b" value="${b}"/><br/>
+        <form action="login">
+            User: <input type="number" step="0.01" name="a" value="${a}"/><br/>            
+            Password: <input type="number" step="0.01" name="b" value="${b}"/><br/>
             <input type="submit" name="op" value="Submit"/>
 
-
         </form>
-        Result: x = ${ketqua}
     </body>
 </html>

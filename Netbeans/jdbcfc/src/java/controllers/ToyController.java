@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import db.Brand;
+import db.BrandFacade;
 import db.Toy;
 import db.ToyFacade;
 import java.io.IOException;
@@ -38,8 +40,8 @@ public class ToyController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String controller = (String)request.getAttribute("controller");
-        String action = (String)request.getAttribute("action");
+        String controller = (String) request.getAttribute("controller");
+        String action = (String) request.getAttribute("action");
         ToyFacade tf = new ToyFacade();
         switch (action) {
             case "index":
@@ -51,9 +53,64 @@ public class ToyController extends HttpServlet {
                     //Hien trang thong bao loi
                     ex.printStackTrace();//in thong bao loi chi tiet cho developer
                     request.setAttribute("message", ex.getMessage());
+                    request.setAttribute("controller", "error");
+                    request.setAttribute("action", "error");
                     request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
                 }
                 break;
+            case "create"://Hien form de nhap du lieu moi
+                try {
+                    //Doc toan bo table brand
+                    BrandFacade bf = new BrandFacade();
+                    List<Brand> list = bf.select();
+                    //truyen list cho view de tao combobox
+                    request.setAttribute("list", list);
+                    request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
+                } catch (SQLException ex) {
+                    request.setAttribute("message", ex.getMessage());
+                    request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
+                }
+                break;
+            case "create_handler": {//Xu ly create form
+                String op = request.getParameter("op");
+                switch (op) {
+                    case "create":
+                        try {
+                            //Đọc dữ liệu từ client gửi lên
+                            String id = request.getParameter("id");
+                            String name = request.getParameter("name");
+                            double price = Double.parseDouble(request.getParameter("price"));
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            Date expDate = sdf.parse(request.getParameter("expDate"));
+                            String brandId = request.getParameter("brandId");
+                            //Tao doi tuong toy
+                            Toy toy = new Toy(id, name, price, expDate, brandId);
+                            //Luu toy vao request de bao ton trang thai cua form
+                            request.setAttribute("toy", toy);
+                            //Doc toan bo table brand
+                            BrandFacade bf = new BrandFacade();
+                            List<Brand> list = bf.select();
+                            //truyen list cho view de tao combobox
+                            request.setAttribute("list", list);
+                            //Cập nhật dữ liệu vào db
+                            tf.create(toy);
+                            //Hiển thị danh sách các mẫu tin của table toy
+                            response.sendRedirect(request.getContextPath() + "/toy/index.do");
+                        } catch (Exception ex) {
+                            //Hien create form de nhap lai du lieu
+                            ex.printStackTrace();//in thong bao loi chi tiet cho developer
+                            request.setAttribute("action", "create");
+                            request.setAttribute("message", ex.getMessage());
+                            request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
+                        }
+                        break;
+                    case "cancel":
+                        //Hiển thị danh sách các mẫu tin của table toy
+                        response.sendRedirect(request.getContextPath() + "/toy/index.do");
+                        break;
+                }
+            }
+            break;
             case "edit"://Hien form de sua du lieu
                 try {
                     //Đọc mẫu tin cần sửa vào đối tượng toy
@@ -61,52 +118,63 @@ public class ToyController extends HttpServlet {
                     Toy toy = tf.read(id);
                     //Lưu toy vào request để truyền cho view edit.jsp
                     request.setAttribute("toy", toy);
-                    //Chuyển request & response đến view edit.jsp để xử lý tiếp
-                    request.getRequestDispatcher("/edit.jsp").forward(request, response);
+                    //Chuyển request & response đến view edit.jsp để xử ly tiếp
+                    request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
                 } catch (SQLException ex) {
                     //Hien trang thong bao loi
                     ex.printStackTrace();//in thong bao loi chi tiet cho developer
                     request.setAttribute("message", ex.getMessage());
-                    request.getRequestDispatcher("/error.jsp").forward(request, response);
+                    request.setAttribute("controller", "error");
+                    request.setAttribute("action", "error");
+                    request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
                 }
                 break;
-            case "edit_handler"://Luu thong tin vao db
-                try {
-                    //Đọc dữ liệu từ client gửi lên
-                    String id = request.getParameter("id");
-                    String name = request.getParameter("name");
-                    double price = Double.parseDouble(request.getParameter("price"));
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    Date expDate = sdf.parse(request.getParameter("expDate"));
-                    String brandId = request.getParameter("brandId");
-                    //Cập nhật dữ liệu vào db
-                    Toy toy = new Toy(id, name, price, expDate, brandId);
-                    tf.update(toy);
-                    //Hiển thị danh sách các mẫu tin của table toy
-                    /*
-                    List<Toy> list = tf.select();
-                    request.setAttribute("list", list);
-                    request.getRequestDispatcher("/toy.jsp").forward(request, response);
-                    */
-                    response.sendRedirect(request.getContextPath() + "/toy?op=list");
-                } catch (Exception ex) {
-                    //Hien trang thong bao loi
-                    ex.printStackTrace();//in thong bao loi chi tiet cho developer
-                    request.setAttribute("message", ex.getMessage());
-                    request.getRequestDispatcher("/error.jsp").forward(request, response);
+            case "edit_handler": {//Luu thong tin vao db
+                String op = request.getParameter("op");
+                switch (op) {
+                    case "update":
+                        try {
+                            //Đọc dữ liệu từ client gửi lên
+                            String id = request.getParameter("id");
+                            String name = request.getParameter("name");
+                            double price = Double.parseDouble(request.getParameter("price"));
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            Date expDate = sdf.parse(request.getParameter("expDate"));
+                            String brandId = request.getParameter("brandId");
+                            //Cập nhật dữ liệu vào db
+                            Toy toy = new Toy(id, name, price, expDate, brandId);
+                            tf.update(toy);
+                            //Hiển thị danh sách các mẫu tin của table toy
+                            response.sendRedirect(request.getContextPath() + "/toy/index.do");
+                        } catch (Exception ex) {
+                            //Hien trang thong bao loi
+                            ex.printStackTrace();//in thong bao loi chi tiet cho developer
+                            request.setAttribute("message", ex.getMessage());
+                            request.setAttribute("controller", "error");
+                            request.setAttribute("action", "error");
+                            request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
+                        }
+                        break;
+                    case "cancel":
+                        //Hiển thị danh sách các mẫu tin của table toy
+                        response.sendRedirect(request.getContextPath() + "/toy/index.do");
+                        break;
                 }
-                break;
+            }
+            break;
             case "delete":
                 try {
                     String id = request.getParameter("id");
                     tf.delete(id);
                     //Chuyen den trang /toy?op=list
-                    response.sendRedirect(request.getContextPath() + "/toy?op=list");
+                    response.sendRedirect(request.getContextPath() + "/toy/index.do");
                 } catch (SQLException ex) {
                     //Hien trang thong bao loi
                     ex.printStackTrace();//in thong bao loi chi tiet cho developer
                     request.setAttribute("message", ex.getMessage());
-                    request.getRequestDispatcher("/error.jsp").forward(request, response);
+                    request.setAttribute("controller", "error");
+                    request.setAttribute("action", "error");
+                    request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
                 }
                 break;
         }

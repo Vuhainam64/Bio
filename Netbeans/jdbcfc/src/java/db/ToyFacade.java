@@ -42,6 +42,23 @@ public class ToyFacade {
         return list;
     }
     
+    public void create(Toy toy) throws SQLException {
+        //Tạo connection để kết nối vào DBMS
+        Connection con = DBContext.getConnection();
+        //Tạo đối tượng PreparedStatement
+        PreparedStatement stm = con.prepareStatement("insert toy values(?, ?, ?, ?, ?)");
+        stm.setString(1, toy.getId());
+        stm.setString(2, toy.getName());
+        stm.setDouble(3, toy.getPrice());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        stm.setString(4, sdf.format(toy.getExpDate()));
+        stm.setString(5, toy.getBrandId());        
+        //Thực thi lệnh sql
+        int count = stm.executeUpdate();       
+        //Đóng kết nối
+        con.close();
+    }
+    
     public Toy read(String id) throws SQLException {
         Toy toy = null;
         //Tạo connection để kết nối vào DBMS

@@ -35,13 +35,13 @@ public class FrontController extends HttpServlet {
         //Phan tich url de lay ra ten controller va action
         //localhost:8080/contextpath/controller/action.do
         //Ex: localhost:8080/contextpath/user/login.do
-        String url = request.getServletPath();
-        String controller = url.substring(0, url.lastIndexOf("/"));
-        String action = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("."));
+        String url=request.getServletPath();
+        String controller=url.substring(0, url.lastIndexOf("/"));
+        String action=url.substring(url.lastIndexOf("/")+1,url.lastIndexOf("."));
         //In thong tin de kiem tra
-        System.out.println("ServletPath: " + url);
-        System.out.println("Controller: " + controller);
-        System.out.println("Action: " + action);
+        System.out.println("ServletPath: "+url);
+        System.out.println("Controller: "+controller);
+        System.out.println("Action: "+action);
         //Luu ten controller & action vao request
         request.setAttribute("controller", controller);
         request.setAttribute("action", action);

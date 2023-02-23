@@ -8,6 +8,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h2>Toy CRUD</h2>
 <hr/>
+<a href="<c:url value="/toy/create.do" />"><i class="bi bi-pencil-square"></i> Create</a>
 <table class="table table-striped">
     <tr>
         <th>No.</th>
@@ -27,8 +28,8 @@
             <td>${toy.expDate}</td>
             <td>${toy.brandId}</td>
             <td>
-                <a href="<c:url value="/toy?op=edit&id=${toy.id}" />">Edit</a> | 
-                <a href="<c:url value="/toy?op=delete&id=${toy.id}" />">Delete</a>
+                <a href="<c:url value="/toy/edit.do?id=${toy.id}" />"><i class="bi bi-pencil-square"></i> Edit</a> | 
+                <a href="<c:url value="/toy/delete.do?id=${toy.id}" />"><i class="bi bi-trash3"></i> Delete</a>
             </td>
         </tr>
     </c:forEach>

@@ -1,7 +1,8 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Hero Section Begin -->
 <section class="hero">
     <div class="hero__slider owl-carousel">
-        <div class="hero__item set-bg" data-setbg="img/hero/hero-1.jpg">
+        <div class="hero__item set-bg" data-setbg="<c:url value="/img/hero/hero-1.jpg"/>">
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
@@ -13,12 +14,24 @@
                 </div>
             </div>
         </div>
-        <div class="hero__item set-bg" data-setbg="img/hero/hero-1.jpg">
+        <div class="hero__item set-bg" data-setbg="<c:url value="/img/hero/hero-1.jpg"/>">
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
                         <div class="hero__text">
-                            <h2>Making your life sweeter one bite at a time!</h2>
+                            <h2>I love you like a fat kid loves cake.</h2>
+                            <a href="#" class="primary-btn">Our cakes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__item set-bg" data-setbg="<c:url value="/img/hero/hero-1.jpg"/>">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="hero__text">
+                            <h2>Cake is the answer, no matter the question.</h2>
                             <a href="#" class="primary-btn">Our cakes</a>
                         </div>
                     </div>
@@ -124,134 +137,24 @@
 <section class="product spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/shop/product-1.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
+            <c:forEach var="products" items="${list}">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="${products.image}">
+                            <div class="product__label">
+                                <span>${products.category}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Dozen Cupcakes</a></h6>
-                        <div class="product__item__price">$32.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/shop/product-2.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Cookies and Cream</a></h6>
-                        <div class="product__item__price">$30.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
+                        <div class="product__item__text">
+                            <h6><a href="#">${products.name}</a></h6>
+                            <div class="product__item__price">$ ${products.price}</div>
+                            <div class="cart_add">
+                                <a href="#">Add to cart</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/shop/product-3.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Gluten Free Mini Dozen</a></h6>
-                        <div class="product__item__price">$31.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/shop/product-4.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Cookie Dough</a></h6>
-                        <div class="product__item__price">$25.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/shop/product-5.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Vanilla Salted Caramel</a></h6>
-                        <div class="product__item__price">$05.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/shop/product-6.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">German Chocolate</a></h6>
-                        <div class="product__item__price">$14.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/shop/product-7.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Dulce De Leche</a></h6>
-                        <div class="product__item__price">$32.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/shop/product-8.jpg">
-                        <div class="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Mississippi Mud</a></h6>
-                        <div class="product__item__price">$08.00</div>
-                        <div class="cart_add">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
         </div>
     </div>
 </section>
@@ -281,7 +184,7 @@
                 </div>
             </div>
         </div>
-        <div class="class__video set-bg" data-setbg="img/class-video.jpg">
+        <div class="class__video set-bg" data-setbg="<c:url value="/img/class-video.jpg"/>">
             <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1"
                class="play-btn video-popup"><i class="fa fa-play"></i></a>
         </div>
@@ -306,10 +209,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="team__item set-bg" data-setbg="img/team/team-1.jpg">
+            <div class="col">
+                <div class="team__item set-bg" data-setbg="<c:url value="/img/team/team-1.jpg"/>">
                     <div class="team__item__text">
-                        <h6>Randy Butler</h6>
+                        <h6>Thang Cookie</h6>
                         <span>Decorater</span>
                         <div class="team__item__social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -320,10 +223,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="team__item set-bg" data-setbg="img/team/team-2.jpg">
+            <div class="col">
+                <div class="team__item set-bg" data-setbg="<c:url value="/img/team/team-1.jpg"/>">
                     <div class="team__item__text">
-                        <h6>Randy Butler</h6>
+                        <h6>Quang Butler</h6>
                         <span>Decorater</span>
                         <div class="team__item__social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -334,10 +237,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="team__item set-bg" data-setbg="img/team/team-3.jpg">
+            <div class="col">
+                <div class="team__item set-bg" data-setbg="<c:url value="/img/team/team-1.jpg"/>">
                     <div class="team__item__text">
-                        <h6>Randy Butler</h6>
+                        <h6>Nam Velvet</h6>
                         <span>Decorater</span>
                         <div class="team__item__social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -348,10 +251,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="team__item set-bg" data-setbg="img/team/team-4.jpg">
+            <div class="col">
+                <div class="team__item set-bg" data-setbg="<c:url value="/img/team/team-1.jpg"/>">
                     <div class="team__item__text">
-                        <h6>Randy Butler</h6>
+                        <h6>Minh Biscult</h6>
                         <span>Decorater</span>
                         <div class="team__item__social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -362,6 +265,21 @@
                     </div>
                 </div>
             </div>
+            <div class="col">
+                <div class="team__item set-bg" data-setbg="<c:url value="/img/team/team-1.jpg"/>">
+                    <div class="team__item__text">
+                        <h6>Quan Donut</h6>
+                        <span>Decorater</span>
+                        <div class="team__item__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -384,7 +302,7 @@
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="img/testimonial/ta-1.jpg" alt="">
+                                <img src="<c:url value="/img/testimonial/ta-1.jpg"/>" alt="">
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Kerry D.Silva</h5>
@@ -398,15 +316,14 @@
                             <span class="icon_star"></span>
                             <span class="icon_star-half_alt"></span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        <p>Mmm, that cake looks absolutely delicious! I love how the layers are perfectly stacked and the frosting is so beautifully swirled on top.</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="img/testimonial/ta-2.jpg" alt="">
+                                <img src="<c:url value="/img/testimonial/ta-2.jpg"/>" alt="">
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Kerry D.Silva</h5>
@@ -420,15 +337,14 @@
                             <span class="icon_star"></span>
                             <span class="icon_star-half_alt"></span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        <p>Cake truly is one of the most versatile desserts out there - you can have it for birthdays, weddings, or even just as a sweet treat to enjoy with friends and family.</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="img/testimonial/ta-1.jpg" alt="">
+                                <img src="<c:url value="/img/testimonial/ta-3.jpg"/>" alt="">
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Ophelia Nunez</h5>
@@ -442,15 +358,14 @@
                             <span class="icon_star"></span>
                             <span class="icon_star-half_alt"></span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        <p>Whether you prefer chocolate cake, vanilla cake, or something more exotic like red velvet or carrot cake, there's a flavor out there for everyone.</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="img/testimonial/ta-2.jpg" alt="">
+                                <img src="<c:url value="/img/testimonial/ta-4.jpg"/>" alt="">
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Kerry D.Silva</h5>
@@ -464,15 +379,14 @@
                             <span class="icon_star"></span>
                             <span class="icon_star-half_alt"></span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        <p>So let's raise a fork to this wonderful dessert and enjoy a slice (or two!) of cake today! Cake is not just a dessert, it's a symbol of celebration, happiness, and love. </p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="img/testimonial/ta-1.jpg" alt="">
+                                <img src="<c:url value="/img/testimonial/ta-5.jpg"/>" alt="">
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Ophelia Nunez</h5>
@@ -486,15 +400,14 @@
                             <span class="icon_star"></span>
                             <span class="icon_star-half_alt"></span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        <p>Whether it's a small gathering with friends or a grand wedding, cake has the power to bring people together and create lasting memories.</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__pic">
-                                <img src="img/testimonial/ta-2.jpg" alt="">
+                                <img src="<c:url value="/img/testimonial/ta-6.jpg"/>" alt="">
                             </div>
                             <div class="testimonial__author__text">
                                 <h5>Kerry D.Silva</h5>
@@ -508,8 +421,7 @@
                             <span class="icon_star"></span>
                             <span class="icon_star-half_alt"></span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        <p>The act of sharing a slice of cake with someone is a gesture of kindness and generosity, and it's a way to show someone that you care.</p>
                     </div>
                 </div>
             </div>
@@ -535,32 +447,32 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                         <div class="instagram__pic">
-                            <img src="img/instagram/instagram-1.jpg" alt="">
+                            <img src="<c:url value="/img/instagram/instagram-1.jpg"/>" alt="">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                         <div class="instagram__pic middle__pic">
-                            <img src="img/instagram/instagram-2.jpg" alt="">
+                            <img src="<c:url value="/img/instagram/instagram-2.jpg"/>" alt="">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                         <div class="instagram__pic">
-                            <img src="img/instagram/instagram-3.jpg" alt="">
+                            <img src="<c:url value="/img/instagram/instagram-3.jpg"/>" alt="">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                         <div class="instagram__pic">
-                            <img src="img/instagram/instagram-4.jpg" alt="">
+                            <img src="<c:url value="/img/instagram/instagram-4.jpg"/>" alt="">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                         <div class="instagram__pic middle__pic">
-                            <img src="img/instagram/instagram-5.jpg" alt="">
+                            <img src="<c:url value="/img/instagram/instagram-5.jpg"/>" alt="">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                         <div class="instagram__pic">
-                            <img src="img/instagram/instagram-3.jpg" alt="">
+                            <img src="<c:url value="/img/instagram/instagram-6.jpg"/>" alt="">
                         </div>
                     </div>
                 </div>
@@ -572,22 +484,8 @@
 
 <!-- Map Begin -->
 <div class="map">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-7">
-                <div class="map__inner">
-                    <h6>COlorado</h6>
-                    <ul>
-                        <li>1000 Lakepoint Dr, Frisco, CO 80443, USA</li>
-                        <li>Sweetcake@support.com</li>
-                        <li>+1 800-786-1000</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="map__iframe">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10784.188505644011!2d19.053119335158936!3d47.48899529453826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1543907528304" height="300" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.610010397031!2d106.809883!3d10.841127599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752731176b07b1%3A0xb752b24b379bae5e!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBGUFQgVFAuIEhDTQ!5e0!3m2!1svi!2s!4v1677206353863!5m2!1svi!2s" height="300" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     </div>
 </div>
 <!-- Map End -->

@@ -6,6 +6,7 @@
 package controllers;
 
 import db.DBContext;
+import db.ProductsFacade;
 import entity.Products;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,24 +41,34 @@ public class CakeStoreController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String controller = (String) request.getAttribute("controller");
         String action = (String) request.getAttribute("action");
+        ProductsFacade pf = new ProductsFacade();
         switch (action) {
-            case "index": {
-                request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
-            }
-            break;
+            case "index":
+                try {
+                    List<Products> list = pf.select();
+                    request.setAttribute("list", list);
+                    request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
+                } catch (SQLException ex) {
+                    //Hien trang thong bao loi
+                    ex.printStackTrace();//in thong bao loi chi tiet cho developer
+                    request.setAttribute("message", ex.getMessage());
+                    request.setAttribute("controller", "error");
+                    request.setAttribute("action", "error");
+                    request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
+                }
+                break;
             case "about":
-                //Processing code here
-                //Forward request & response to the main layout
-                
                 request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
                 break;
-            case "shop":
-                //Processing code here
-                //Forward request & response to the main layout
+            case "login":
                 request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
                 break;
             default:
-            //Show error page
+                //Show error page
+                request.setAttribute("controller", "error");
+                request.setAttribute("action", "error");
+                request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
+
         }
     }
 

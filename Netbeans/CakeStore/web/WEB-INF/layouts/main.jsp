@@ -99,7 +99,7 @@
                                                 <li>ENG</li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
+                                        <li><a href="<c:url value="/cakestore/login.do"/>">Sign in</a> <span class="arrow_carrot-down"></span></li>
                                     </ul>
                                 </div>
                                 <div class="header__logo">
@@ -126,7 +126,7 @@
                     <div class="col-lg-12">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li><a href="<c:url value="/index.do"/>">Home</a></li>
+                                <li><a href="<c:url value="/cakestore/index.do"/>">Home</a></li>
                                 <li><a href="<c:url value="/cakestore/about.do"/>">About</a></li>
                                 <li><a href="<c:url value="/cakestore/shop.do"/>">Shop</a></li>
                                 <li><a href="#">Pages</a>
@@ -174,8 +174,7 @@
                             <div class="footer__logo">
                                 <a href="#"><img src="<c:url value="/img/footer-logo.png" />" alt=""></a>
                             </div>
-                            <p>Lorem ipsum dolor amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore dolore magna aliqua.</p>
+                            <p>Our cake store is a true haven for dessert lovers. As soon as you step inside, the sweet aroma of freshly baked cakes and pastries will fill your senses and make your mouth water. </p>
                             <div class="footer__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -188,9 +187,9 @@
                         <div class="footer__newslatter">
                             <h6>Subscribe</h6>
                             <p>Get latest updates and offers.</p>
-                            <form action="#">
-                                <input type="text" placeholder="Email">
-                                <button type="submit"><i class="fa fa-send-o"></i></button>
+                            <form action="<c:url value="/subscribe/subscribe.do" />"  method="post">
+                                <input type="email" id="email" name="email" placeholder="Email">
+                                <button type="submit" value="Subscribe"><i class="fa fa-send-o"></i></button>
                             </form>
                         </div>
                     </div>
@@ -200,9 +199,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7">
-                            <p class="copyright__text text-white"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">FPT Student</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            <p class="copyright__text text-white">
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://daihoc.fpt.edu.vn/" target="_blank">FPT Student</a>
                             </p>
                         </div>
                         <div class="col-lg-5">
@@ -241,5 +239,7 @@
         <script src="<c:url value="/js/owl.carousel.min.js" />"></script>
         <script src="<c:url value="/js/jquery.nicescroll.min.js" />"></script>
         <script src="<c:url value="/js/main.js" />"></script>
+        <script src="<c:url value="/js/login.js" />"></script>
+
     </body>
 </html>

@@ -31,6 +31,7 @@ public class ProductsFacade {
         while (rs.next()) {
             Products products = new Products();
             products.setId(rs.getInt("id"));
+            products.setName(rs.getString("name"));
             products.setDescription(rs.getString("description"));
             products.setPrice(rs.getDouble("price"));
             products.setCategory(rs.getString("category"));

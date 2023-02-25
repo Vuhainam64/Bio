@@ -29,13 +29,5 @@ public class DBContext {
         }
         return con;
     }
-   
-//    public static void main(String[] args) {
-//        try {
-//            System.out.println( DBContext.getConnection());
-//        } catch (Exception e) {
-//            
-//        }
-//    }
 
 }

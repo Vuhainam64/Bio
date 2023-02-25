@@ -77,11 +77,16 @@ GO
 raiserror('Insert data products....',0,1)
 -- Populate the products table
 INSERT INTO products (name, description, price, category, image)
-VALUES ('Red Velvet Cake', 'A classic red velvet cake with cream cheese frosting', 34.99, 'Cakes', 'red_velvet_cake.jpg'),
-	   ('Blueberry Muffin', 'A delicious muffin filled with fresh blueberries', 2.99, 'Muffins', 'blueberry_muffin.jpg'),
-	   ('Chocolate Chip Cookie', 'A classic cookie with chunks of chocolate', 1.99, 'Cookies', 'chocolate_chip_cookie.jpg'),
-	   ('Croissant', 'A flaky pastry with a buttery flavor', 2.49, 'Pastries', 'croissant.jpg'),
-	   ('Apple Pie', 'A warm and comforting pie filled with sweet apples', 19.99, 'Pies', 'apple_pie.jpg');
+VALUES
+('Dozen Cupcakes', 'Dozen cupcakes typically refer to a set of 12 small cakes that are usually baked in a muffin tin and decorated with frosting or other toppings.', 32.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-1.jpg'),
+('Cookies and Cream', 'Cookies and cream typically refers to a flavor combination that features crumbled chocolate cookies (such as Oreo cookies) mixed into a vanilla-flavored base, such as ice cream or frosting.', 30.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-2.jpg'),
+('Gluten Free Mini Dozen', 'Gluten-free mini dozen refers to a set of twelve small baked goods that are made without gluten, a protein found in wheat, barley, and rye.', 31.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-3.jpg'),
+('Cookie Dough', 'Cookie dough refers to a mixture of ingredients that are used to make cookies but have not yet been baked.', 25.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-4.jpg'),
+('Vanilla Salted Caramel', 'Vanilla salted caramel refers to a flavor combination that features the sweet and creamy taste of vanilla paired with the rich, buttery flavor of salted caramel.', 5.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-5.jpg'),
+('German Chocolate', 'German chocolate refers to a type of chocolate cake that is made with a unique combination of ingredients.', 14.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-6.jpg'),
+('Dulce De Leche', 'Dulce de leche is a thick, creamy caramel sauce that is popular in Latin American cuisine. It is made by slowly heating sweetened condensed milk until it thickens and turns a golden brown color.', 32.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-7.jpg'),
+('Mississippi Mud', 'Mississippi mud is a rich and decadent dessert that typically consists of a chocolate cake base topped with marshmallows, chocolate frosting, and sometimes nuts or other toppings.', 8.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-8.jpg');
+
 GO
 raiserror('Insert data staff....',0,1)
 -- Populate the staff table
@@ -115,3 +120,9 @@ raiserror('Insert data classes....',0,1)
 INSERT INTO classes (name, description)
 VALUES ('Cookie Class', 'Learn how to make a variety of delicious cookies.'),
        ('Butter Class', 'Learn how to make rich, buttery cakes and pastries.');
+GO
+raiserror('Creating Table subscribe....',0,1)
+CREATE TABLE subscribe (
+    email VARCHAR(255) PRIMARY KEY NOT NULL,
+    date DATE DEFAULT GETDATE()
+);

@@ -22,107 +22,104 @@ GO
 
 USE Cake
 GO
+set nocount on
+USE master
+GO
+
+if exists (select * from sysdatabases where name='Cake')
+begin
+  raiserror('Dropping existing Cake database ....',0,1)
+  DROP database Cake
+end
+GO
+
+CHECKPOINT
+go
+
+raiserror('Creating Cake database....',0,1)
+go
+   CREATE DATABASE Cake
+GO
+
+CHECKPOINT
+GO
+
+USE Cake
+GO
+-- Create Products table
 raiserror('Creating Table Products....',0,1)
-CREATE TABLE products (
+CREATE TABLE Products (
     id INT IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    description VARCHAR(MAX) NOT NULL,
-    price DECIMAL(10, 2) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
     category VARCHAR(50) NOT NULL,
-	image VARCHAR(255)
+    image VARCHAR(255) NOT NULL
 );
 GO
-raiserror('Creating Table staff....',0,1)
-CREATE TABLE staff (
-    id INT IDENTITY(1,1) PRIMARY KEY,
+-- Create Products table
+raiserror('Creating Table Customers....',0,1)
+CREATE TABLE Customers (
+    id VARCHAR(50) PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    position VARCHAR(50) NOT NULL
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL
 );
 GO
-raiserror('Creating Table customers....',0,1)
-CREATE TABLE customers (
+-- Create Products table
+raiserror('Creating Table Orders....',0,1)
+CREATE TABLE Orders (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    phone_number VARCHAR(20) NOT NULL
+    customer_id VARCHAR(50) NOT NULL,
+    order_date DATETIME NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customers(id)
 );
 GO
-raiserror('Creating Table orders....',0,1)
-CREATE TABLE orders (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    customer_id INT NOT NULL,
-    order_date DATE NOT NULL,
-    total_amount DECIMAL(10, 2) NOT NULL,
-    CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES customers(id)
-);
-GO
-raiserror('Creating Table order_items....',0,1)
-CREATE TABLE order_items (
+-- Create Products table
+raiserror('Creating Table OrderItem....',0,1)
+CREATE TABLE OrderItem (
     id INT IDENTITY(1,1) PRIMARY KEY,
     order_id INT NOT NULL,
     product_id INT NOT NULL,
     quantity INT NOT NULL,
-    unit_price DECIMAL(10, 2) NOT NULL,
-    CONSTRAINT fk_order FOREIGN KEY (order_id) REFERENCES orders(id),
-    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES products(id)
+    FOREIGN KEY (order_id) REFERENCES Orders(id),
+    FOREIGN KEY (product_id) REFERENCES Products(id)
 );
 GO
-raiserror('Creating Table classes....',0,1)
-CREATE TABLE classes (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    description VARCHAR(MAX) NOT NULL
-);
+USE Cake;
 GO
-raiserror('Insert data products....',0,1)
--- Populate the products table
-INSERT INTO products (name, description, price, category, image)
-VALUES
-('Dozen Cupcakes', 'Dozen cupcakes typically refer to a set of 12 small cakes that are usually baked in a muffin tin and decorated with frosting or other toppings.', 32.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-1.jpg'),
-('Cookies and Cream', 'Cookies and cream typically refers to a flavor combination that features crumbled chocolate cookies (such as Oreo cookies) mixed into a vanilla-flavored base, such as ice cream or frosting.', 30.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-2.jpg'),
-('Gluten Free Mini Dozen', 'Gluten-free mini dozen refers to a set of twelve small baked goods that are made without gluten, a protein found in wheat, barley, and rye.', 31.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-3.jpg'),
-('Cookie Dough', 'Cookie dough refers to a mixture of ingredients that are used to make cookies but have not yet been baked.', 25.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-4.jpg'),
-('Vanilla Salted Caramel', 'Vanilla salted caramel refers to a flavor combination that features the sweet and creamy taste of vanilla paired with the rich, buttery flavor of salted caramel.', 5.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-5.jpg'),
-('German Chocolate', 'German chocolate refers to a type of chocolate cake that is made with a unique combination of ingredients.', 14.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-6.jpg'),
-('Dulce De Leche', 'Dulce de leche is a thick, creamy caramel sauce that is popular in Latin American cuisine. It is made by slowly heating sweetened condensed milk until it thickens and turns a golden brown color.', 32.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-7.jpg'),
-('Mississippi Mud', 'Mississippi mud is a rich and decadent dessert that typically consists of a chocolate cake base topped with marshmallows, chocolate frosting, and sometimes nuts or other toppings.', 8.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-8.jpg');
+
+ALTER TABLE Products
+ADD Tags VARCHAR(255),
+    Image1 VARCHAR(255),
+    Image2 VARCHAR(255),
+    Image3 VARCHAR(255),
+    Image4 VARCHAR(255),
+    Image5 VARCHAR(255);
+GO
+-- Create the Subscription table
+raiserror('Creating Table Subscription....',0,1)
+CREATE TABLE Subscription (
+    email VARCHAR(255) PRIMARY KEY,
+    date_subscribed DATETIME NOT NULL
+);
 
 GO
-raiserror('Insert data staff....',0,1)
--- Populate the staff table
-INSERT INTO staff (name, position)
-VALUES ('Sarah', 'Head Baker'),
-       ('Jack', 'Assistant Baker'),
-       ('Emily', 'Pastry Chef');
-GO
-raiserror('Insert data customers....',0,1)
--- Populate the customers table
-INSERT INTO customers (name, email, phone_number)
-VALUES ('John Doe', 'johndoe@example.com', '555-1234'),
-       ('Jane Smith', 'janesmith@example.com', '555-5678');
-GO
-raiserror('Insert data orders....',0,1)
--- Populate the orders table
-INSERT INTO orders (customer_id, order_date, total_amount)
-VALUES (1, '2023-02-22', 8.97),
-       (2, '2023-02-23', 27.47); 
-GO
-raiserror('Insert data order_items....',0,1)
--- Populate the order_items table
-INSERT INTO order_items (order_id, product_id, quantity, unit_price)
-VALUES (1, 1, 3, 2.99),
-       (2, 2, 1, 19.99),
-       (2, 3, 1, 24.99),
-       (2, 5, 2, 1.49);
-GO
-raiserror('Insert data classes....',0,1)
--- Populate the classes table
-INSERT INTO classes (name, description)
-VALUES ('Cookie Class', 'Learn how to make a variety of delicious cookies.'),
-       ('Butter Class', 'Learn how to make rich, buttery cakes and pastries.');
-GO
-raiserror('Creating Table subscribe....',0,1)
-CREATE TABLE subscribe (
-    email VARCHAR(255) PRIMARY KEY NOT NULL,
-    date DATE DEFAULT GETDATE()
-);
+-- Populate the Products table
+raiserror('Insert Table Products....',0,1)
+go
+raiserror('Set IDENTITY_INSERT Table Products On....',0,1)
+SET IDENTITY_INSERT Products ON
+INSERT INTO Products (id, name, description, price, category, image, Tags, Image1, Image2, Image3, Image4, Image5)
+VALUES 
+(1, 'Dozen Cupcakes', 'Dozen cupcakes typically refer to a set of 12 small cakes that are usually baked in a muffin tin and decorated with frosting or other toppings.', 32.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-1.jpg', 'cupcake, dozen cupcakes, muffin', NULL, NULL, NULL, NULL, NULL),
+(2, 'Cookies and Cream', 'Cookies and cream typically refers to a flavor combination that features crumbled chocolate cookies (such as Oreo cookies) mixed into a vanilla-flavored base, such as ice cream or frosting.', 30.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-2.jpg', 'cookies and cream, cupcake', NULL, NULL, NULL, NULL, NULL),
+(3, 'Gluten Free Mini Dozen', 'Gluten-free mini dozen refers to a set of twelve small baked goods that are made without gluten, a protein found in wheat, barley, and rye.', 31.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-3.jpg', 'gluten-free, mini dozen, cupcake', NULL, NULL, NULL, NULL, NULL),
+(4, 'Cookie Dough', 'Cookie dough refers to a mixture of ingredients that are used to make cookies but have not yet been baked.', 25.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-4.jpg', 'cookie dough, cupcake', NULL, NULL, NULL, NULL, NULL),
+(5, 'Vanilla Salted Caramel', 'Vanilla salted caramel refers to a flavor combination that features the sweet and creamy taste of vanilla paired with the rich, buttery flavor of salted caramel.', 5.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-5.jpg', 'vanilla, salted caramel, cupcake', NULL, NULL, NULL, NULL, NULL),
+(6, 'German Chocolate', 'German chocolate refers to a type of chocolate cake that is made with a unique combination of ingredients.', 14.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-6.jpg', 'german chocolate, chocolate, cake, cupcake', NULL, NULL, NULL, NULL, NULL),
+(7, 'Dulce De Leche', 'Dulce de leche is a thick, creamy caramel sauce that is popular in Latin American cuisine. It is made by slowly heating sweetened condensed milk until it thickens and turns a golden brown color.', 32.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-7.jpg', 'dulce de leche, caramel, sauce, cupcake', NULL, NULL, NULL, NULL, NULL),
+(8, 'Mississippi Mud', 'Mississippi mud is a rich and decadent dessert that typically consists of a chocolate cake base topped with marshmallows, chocolate frosting, and sometimes nuts or other toppings.', 8.00, 'Cupcake', 'https://themewagon.github.io/cake/img/shop/product-8.jpg', 'mississippi mud, chocolate, cake, marshmallows, frosting, nuts, cupcake', NULL, NULL, NULL, NULL, NULL),
+(9, 'Sri Lankan', 'Sri Lankan Butter Cake, also known as "Milk Toffee Cake," is a rich and buttery cake that is popular in Sri Lanka. It is typically made with ingredients such as butter, sugar, eggs, flour, baking powder, and milk.', 4, 'Butter', 'https://www.theflavorbender.com/wp-content/uploads/2020/08/Sri-Lankan-Butter-Cake-SM-9023.jpg', NULL, NULL, NULL, NULL, NULL, 'Butter'),
+(10, 'Basic Vanilla', 'A Basic Vanilla Butter Cake is a classic cake made with simple ingredients such as flour, sugar, butter, eggs, vanilla extract, and baking powder. It has a soft and tender crumb, a slightly sweet flavor, and a subtle vanilla aroma.', 20, 'Butter', 'https://vintagekitchennotes.com/wp-content/uploads/2020/09/Vanilla-Butter-Cake.1.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 'Gooey', 'Gooey Butter Cake is a classic dessert that originated in St. Louis, Missouri, in the United States. It is a type of cake that is known for its rich and dense texture, with a gooey and buttery filling and a slightly crisp top crust.', 17.5, 'Butter', 'https://www.thecookierookie.com/wp-content/uploads/2022/08/Gooey-Butter-Cake-5-1024x1536.jpg', NULL, NULL, NULL, NULL, NULL, NULL);

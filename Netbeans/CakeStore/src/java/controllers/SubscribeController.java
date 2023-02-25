@@ -47,7 +47,7 @@ public class SubscribeController extends HttpServlet {
                     //Tạo connection để kết nối vào DBMS
                     Connection con = DBContext.getConnection();
                     //Tạo đối tượng PreparedStatement
-                    String sql = "INSERT INTO subscribe (email, date) VALUES (?, GETDATE())";
+                    String sql = "INSERT INTO Subscription (email, date_subscribed) VALUES (?, GETDATE())";
                     PreparedStatement stm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                     stm.setString(1, email);
                     stm.executeUpdate();

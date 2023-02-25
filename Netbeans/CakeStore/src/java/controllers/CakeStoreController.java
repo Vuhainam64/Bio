@@ -44,8 +44,12 @@ public class CakeStoreController extends HttpServlet {
         ProductsFacade pf = new ProductsFacade();
         switch (action) {
             case "index":
+                response.setContentType("text/html");
+                PrintWriter out = response.getWriter();
+                // Retrieve the selected category from the request parameter
+                String category = request.getParameter("category");
                 try {
-                    List<Products> list = pf.select();
+                    List<Products> list = pf.select(category);
                     request.setAttribute("list", list);
                     request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
                 } catch (SQLException ex) {

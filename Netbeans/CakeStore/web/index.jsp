@@ -5,5 +5,5 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:forward page="/cakestore/index.do" />
+<jsp:forward page="/cakestore/index.do?category=Cupcake" />
                 

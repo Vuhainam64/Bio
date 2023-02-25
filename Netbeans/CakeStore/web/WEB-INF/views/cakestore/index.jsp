@@ -94,37 +94,31 @@
                 <div class="categories__item">
                     <div class="categories__item__icon">
                         <span class="flaticon-029-cupcake-3"></span>
-                        <h5>Cupcake</h5>
+                        <h5><a style="color: black" href="<c:url value="/cakestore/index.do?category=Cupcake"/>">Cupcake</a></h5>
                     </div>
                 </div>
                 <div class="categories__item">
                     <div class="categories__item__icon">
                         <span class="flaticon-034-chocolate-roll"></span>
-                        <h5>Butter</h5>
+                        <h5><a style="color: black" href="<c:url value="/cakestore/index.do?category=Butter"/>">Butter</a></h5>
                     </div>
                 </div>
                 <div class="categories__item">
                     <div class="categories__item__icon">
                         <span class="flaticon-005-pancake"></span>
-                        <h5>Red Velvet</h5>
+                        <h5><a style="color: black" href="<c:url value="/cakestore/index.do?category=Red_Velvet"/>">Red Velvet</a></h5>
                     </div>
                 </div>
                 <div class="categories__item">
                     <div class="categories__item__icon">
                         <span class="flaticon-030-cupcake-2"></span>
-                        <h5>Biscuit</h5>
+                        <h5><a style="color: black" href="<c:url value="/cakestore/index.do?category=Biscuit"/>">Biscuit</a></h5>
                     </div>
                 </div>
                 <div class="categories__item">
                     <div class="categories__item__icon">
                         <span class="flaticon-006-macarons"></span>
-                        <h5>Donut</h5>
-                    </div>
-                </div>
-                <div class="categories__item">
-                    <div class="categories__item__icon">
-                        <span class="flaticon-006-macarons"></span>
-                        <h5>Cupcake</h5>
+                        <h5><a style="color: black" href="<c:url value="/cakestore/index.do?category=Donut"/>">Donut</a></h5>
                     </div>
                 </div>
             </div>
@@ -136,8 +130,8 @@
 <!-- Product Section Begin -->
 <section class="product spad">
     <div class="container">
-        <div class="row">
-            <c:forEach var="products" items="${list}">
+        <div class="row" id="cupcake">
+            <c:forEach begin="0" end="7" var="products" items="${list}">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="${products.image}">

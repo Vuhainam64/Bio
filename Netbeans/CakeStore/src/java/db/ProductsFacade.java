@@ -19,14 +19,14 @@ import java.util.List;
  */
 public class ProductsFacade {
 
-    public List<Products> select() throws SQLException {
+    public List<Products> select(String category) throws SQLException {
         List<Products> list = null;
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
         //Tạo đối tượng statement
         Statement stm = con.createStatement();
         //Thực thi lệnh SELECT
-        ResultSet rs = stm.executeQuery("select * from products");
+        ResultSet rs = stm.executeQuery("SELECT * FROM Products WHERE category='" + category + "'");
         list = new ArrayList<>();
         while (rs.next()) {
             Products products = new Products();

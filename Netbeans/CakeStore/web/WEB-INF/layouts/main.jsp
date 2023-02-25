@@ -126,7 +126,7 @@
                     <div class="col-lg-12">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li><a href="<c:url value="/cakestore/index.do"/>">Home</a></li>
+                                <li><a href="<c:url value="/cakestore/index.do?category=Cupcake"/>">Home</a></li>
                                 <li><a href="<c:url value="/cakestore/about.do"/>">About</a></li>
                                 <li><a href="<c:url value="/cakestore/shop.do"/>">Shop</a></li>
                                 <li><a href="#">Pages</a>

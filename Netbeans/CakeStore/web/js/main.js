@@ -1,27 +1,27 @@
 /*  ---------------------------------------------------
-    Theme Name: Cake
-    Description: Cake e-commerce tamplate
-    Author: Colorib
-    Author URI: https://www.colorib.com/
-    Version: 1.0
-    Created: Colorib
----------------------------------------------------------  */
+ Theme Name: Cake
+ Description: Cake e-commerce tamplate
+ Author: Colorib
+ Author URI: https://www.colorib.com/
+ Version: 1.0
+ Created: Colorib
+ ---------------------------------------------------------  */
 
 'use strict';
 
 (function ($) {
 
     /*------------------
-        Preloader
-    --------------------*/
+     Preloader
+     --------------------*/
     $(window).on('load', function () {
         $(".loader").fadeOut();
         $("#preloder").delay(200).fadeOut("slow");
     });
 
     /*------------------
-        Background Set
-    --------------------*/
+     Background Set
+     --------------------*/
     $('.set-bg').each(function () {
         var bg = $(this).data('setbg');
         $(this).css('background-image', 'url(' + bg + ')');
@@ -51,16 +51,16 @@
 
 
     /*------------------
-		Navigation
-	--------------------*/
+     Navigation
+     --------------------*/
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
     });
 
     /*-----------------------
-        Hero Slider
-    ------------------------*/
+     Hero Slider
+     ------------------------*/
     $(".hero__slider").owlCarousel({
         loop: true,
         margin: 0,
@@ -76,8 +76,8 @@
     });
 
     /*--------------------------
-        Categories Slider
-    ----------------------------*/
+     Categories Slider
+     ----------------------------*/
     $(".categories__slider").owlCarousel({
         loop: true,
         margin: 22,
@@ -109,8 +109,8 @@
     });
 
     /*-----------------------------
-        Testimonial Slider
-    -------------------------------*/
+     Testimonial Slider
+     -------------------------------*/
     $(".testimonial__slider").owlCarousel({
         loop: true,
         margin: 0,
@@ -130,8 +130,8 @@
     });
 
     /*---------------------------------
-        Related Products Slider
-    ----------------------------------*/
+     Related Products Slider
+     ----------------------------------*/
     $(".related__products__slider").owlCarousel({
         loop: true,
         margin: 0,
@@ -159,20 +159,20 @@
     });
 
     /*--------------------------
-        Select
-    ----------------------------*/
+     Select
+     ----------------------------*/
     $("select").niceSelect();
 
     /*------------------
-		Magnific
-	--------------------*/
+     Magnific
+     --------------------*/
     $('.video-popup').magnificPopup({
         type: 'iframe'
     });
 
     /*------------------
-        Barfiller
-    --------------------*/
+     Barfiller
+     --------------------*/
     $('#bar1').barfiller({
         barColor: '#111111',
         duration: 2000
@@ -188,8 +188,8 @@
 
 
     /*------------------
-		Single Product
-	--------------------*/
+     Single Product
+     --------------------*/
     $('.product__details__thumb img').on('click', function () {
         $('.product__details__thumb .pt__item').removeClass('active');
         $(this).addClass('active');
@@ -203,8 +203,8 @@
     });
 
     /*-------------------
-		Quantity change
-	--------------------- */
+     Quantity change
+     --------------------- */
     var proQty = $('.pro-qty');
     proQty.prepend('<span class="dec qtybtn">-</span>');
     proQty.append('<span class="inc qtybtn">+</span>');
@@ -224,12 +224,12 @@
         $button.parent().find('input').val(newVal);
     });
 
-    
+
 
     $(".product__details__thumb").niceScroll({
         cursorborder: "",
         cursorcolor: "rgba(0, 0, 0, 0.5)",
         boxzoom: false
-      });
+    });
 
 })(jQuery);

@@ -90,35 +90,35 @@
 <div class="categories">
     <div class="container">
         <div class="row">
-            <div class="categories__slider owl-carousel">
-                <div class="categories__item">
+            <div class="categories__slider owl-carousel ">
+                <div class="categories__item cupcake">
                     <div class="categories__item__icon">
                         <span class="flaticon-029-cupcake-3"></span>
-                        <h5><a style="color: black" href="<c:url value="/cakestore/index.do?category=Cupcake"/>">Cupcake</a></h5>
+                        <h5>Cupcake</h5>
                     </div>
                 </div>
-                <div class="categories__item">
+                <div class="categories__item butter">
                     <div class="categories__item__icon">
                         <span class="flaticon-034-chocolate-roll"></span>
-                        <h5><a style="color: black" href="<c:url value="/cakestore/index.do?category=Butter"/>">Butter</a></h5>
+                        <h5>Butter</h5>
                     </div>
                 </div>
-                <div class="categories__item">
+                <div class="categories__item red_velvet">
                     <div class="categories__item__icon">
                         <span class="flaticon-005-pancake"></span>
-                        <h5><a style="color: black" href="<c:url value="/cakestore/index.do?category=Red_Velvet"/>">Red Velvet</a></h5>
+                        <h5>Red Velvet</h5>
                     </div>
                 </div>
-                <div class="categories__item">
+                <div class="categories__item biscuit">
                     <div class="categories__item__icon">
                         <span class="flaticon-030-cupcake-2"></span>
-                        <h5><a style="color: black" href="<c:url value="/cakestore/index.do?category=Biscuit"/>">Biscuit</a></h5>
+                        <h5>Biscuit</h5>
                     </div>
                 </div>
-                <div class="categories__item">
+                <div class="categories__item donut">
                     <div class="categories__item__icon">
                         <span class="flaticon-006-macarons"></span>
-                        <h5><a style="color: black" href="<c:url value="/cakestore/index.do?category=Donut"/>">Donut</a></h5>
+                        <h5>Donut</h5>
                     </div>
                 </div>
             </div>
@@ -130,8 +130,8 @@
 <!-- Product Section Begin -->
 <section class="product spad">
     <div class="container">
-        <div class="row" id="cupcake">
-            <c:forEach begin="0" end="7" var="products" items="${list}">
+        <div class="row" id="cupcake" style="display:">
+            <c:forEach begin="0" end="7" var="products" items="${listcupcake}">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="${products.image}">
@@ -143,7 +143,87 @@
                             <h6><a href="#">${products.name}</a></h6>
                             <div class="product__item__price">$ ${products.price}</div>
                             <div class="cart_add">
-                                <a href="#">Add to cart</a>
+                                <a href="<c:url value="/detail/detail.do?pid=${products.id}"/>">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <div class="row" id="butter" style="display:none">
+            <c:forEach begin="0" end="7" var="products" items="${listbutter}">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="${products.image}">
+                            <div class="product__label">
+                                <span>${products.category}</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">${products.name}</a></h6>
+                            <div class="product__item__price">$ ${products.price}</div>
+                            <div class="cart_add">
+                                <a href="<c:url value="/detail/detail.do?pid=${products.id}"/>">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <div class="row" id="red_velvet" style="display:none">
+            <c:forEach begin="0" end="7" var="products" items="${listred_velvet}">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="${products.image}">
+                            <div class="product__label">
+                                <span>${products.category}</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">${products.name}</a></h6>
+                            <div class="product__item__price">$ ${products.price}</div>
+                            <div class="cart_add">
+                                <a href="<c:url value="/detail/details.do?pid=${products.id}"/>">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <div class="row" id="biscuit" style="display:none">
+            <c:forEach begin="0" end="7" var="products" items="${listbiscuit}">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="${products.image}">
+                            <div class="product__label">
+                                <span>${products.category}</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">${products.name}</a></h6>
+                            <div class="product__item__price">$ ${products.price}</div>
+                            <div class="cart_add">
+                                <a href="<c:url value="/detail/detail.do?pid=${products.id}"/>">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <div class="row" id="donut" style="display:none">
+            <c:forEach begin="0" end="7" var="products" items="${listdonut}">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="${products.image}">
+                            <div class="product__label">
+                                <span>${products.category}</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">${products.name}</a></h6>
+                            <div class="product__item__price">$ ${products.price}</div>
+                            <div class="cart_add">
+                                <a href="<c:url value="/detail/detail.do?pid=${products.id}"/>">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -179,7 +259,7 @@
             </div>
         </div>
         <div class="class__video set-bg" data-setbg="<c:url value="/img/class-video.jpg"/>">
-            <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1"
+            <a href="https://www.youtube.com/watch?v=8-5yLt1gqIo?autoplay=1"
                class="play-btn video-popup"><i class="fa fa-play"></i></a>
         </div>
     </div>

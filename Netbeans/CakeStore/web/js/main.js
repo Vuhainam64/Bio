@@ -1,3 +1,5 @@
+
+
 /*  ---------------------------------------------------
  Theme Name: Cake
  Description: Cake e-commerce tamplate
@@ -231,5 +233,45 @@
         cursorcolor: "rgba(0, 0, 0, 0.5)",
         boxzoom: false
     });
+    $('.cupcake').mouseover(function () {
+        $('#cupcake').show();
+        $('#butter').hide();
+        $('#red_velvet').hide();
+        $('#biscuit').hide();
+        $('#donut').hide();
+    });
+
+    $('.butter').mouseover(function () {
+        $('#cupcake').hide();
+        $('#butter').show();
+        $('#red_velvet').hide();
+        $('#biscuit').hide();
+        $('#donut').hide();
+    });
+
+    $('.red_velvet').mouseover(function () {
+        $('#cupcake').hide();
+        $('#butter').hide();
+        $('#red_velvet').show();
+        $('#biscuit').hide();
+        $('#donut').hide();
+    });
+
+    $('.biscuit').mouseover(function () {
+        $('#cupcake').hide();
+        $('#butter').hide();
+        $('#red_velvet').hide();
+        $('#biscuit').show();
+        $('#donut').hide();
+    });
+
+    $('.donut').mouseover(function () {
+        $('#cupcake').hide();
+        $('#butter').hide();
+        $('#red_velvet').hide();
+        $('#biscuit').hide();
+        $('#donut').show();
+    });
 
 })(jQuery);
+

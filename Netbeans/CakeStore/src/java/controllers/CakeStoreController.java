@@ -44,13 +44,17 @@ public class CakeStoreController extends HttpServlet {
         ProductsFacade pf = new ProductsFacade();
         switch (action) {
             case "index":
-                response.setContentType("text/html");
-                PrintWriter out = response.getWriter();
-                // Retrieve the selected category from the request parameter
-                String category = request.getParameter("category");
                 try {
-                    List<Products> list = pf.select(category);
-                    request.setAttribute("list", list);
+                    List<Products> listcupcake = pf.select("cupcake");
+                    request.setAttribute("listcupcake", listcupcake);
+                    List<Products> listbutter = pf.select("butter");
+                    request.setAttribute("listbutter", listbutter);
+                    List<Products> listred_velvet = pf.select("red_velvet");
+                    request.setAttribute("listred_velvet", listred_velvet);
+                    List<Products> listbiscuit = pf.select("biscuit");
+                    request.setAttribute("listbiscuit", listbiscuit);
+                    List<Products> listdonut = pf.select("donut");
+                    request.setAttribute("listdonut", listdonut);
                     request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
                 } catch (SQLException ex) {
                     //Hien trang thong bao loi

@@ -32,7 +32,6 @@ public class ProductsFacade {
             Products products = new Products();
             products.setId(rs.getInt("id"));
             products.setName(rs.getString("name"));
-            products.setDescription(rs.getString("description"));
             products.setPrice(rs.getDouble("price"));
             products.setCategory(rs.getString("category"));
             products.setImage(rs.getString("image"));
@@ -40,5 +39,32 @@ public class ProductsFacade {
         }
         con.close();
         return list;
+    }
+
+    public Products getProductById(int id) throws SQLException {
+        //Tạo connection để kết nối vào DBMS
+        Connection con = DBContext.getConnection();
+        //Tạo đối tượng statement
+        Statement stm = con.createStatement();
+        //Thực thi lệnh SELECT
+        ResultSet rs = stm.executeQuery("SELECT * FROM Products WHERE id= " + id);
+        while (rs.next()) {
+            Products products = new Products();
+            products.setId(rs.getInt("id"));
+            products.setName(rs.getString("name"));
+            products.setDescription(rs.getString("description"));
+            products.setPrice(rs.getDouble("price"));
+            products.setCategory(rs.getString("category"));
+            products.setImage(rs.getString("image"));
+            products.setTags(rs.getString("tags"));
+            products.setImage1(rs.getString("image1"));
+            products.setImage2(rs.getString("image2"));
+            products.setImage3(rs.getString("image3"));
+            products.setImage4(rs.getString("image4"));
+            products.setImage5(rs.getString("image5"));
+            return products;
+        }
+        con.close();
+        return null;
     }
 }

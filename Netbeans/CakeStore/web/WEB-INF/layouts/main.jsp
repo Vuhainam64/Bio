@@ -33,6 +33,8 @@
         <link rel="stylesheet" href="<c:url value="/css/owl.carousel.min.css" />" type="text/css">
         <link rel="stylesheet" href="<c:url value="/css/slicknav.min.css" />" type="text/css">
         <link rel="stylesheet" href="<c:url value="/css/style.css" />" type="text/css">
+        <link rel="stylesheet" href="<c:url value="/css/404.css" />" type="text/css">
+
     </head>
 
     <body>
@@ -46,11 +48,11 @@
         <div class="offcanvas-menu-wrapper">
             <div class="offcanvas__cart">
                 <div class="offcanvas__cart__links">
-                    <a href="#" class="search-switch"><img src="<c:url value="/img/icon/search.png"/>" alt=""></a>
-                    <a href="#"><img src="<c:url value="/img/icon/heart.png"/>" alt=""></a>
+                    <a href="" class="search-switch"><img src="<c:url value="/img/icon/search.png"/>" alt=""></a>
+                    <a href=""><img src="<c:url value="/img/icon/heart.png"/>" alt=""></a>
                 </div>
                 <div class="offcanvas__cart__item">
-                    <a href="#"><img src="<c:url value="/img/icon/cart.png"/>" alt=""></a>
+                    <a href=""><img src="<c:url value="/img/icon/cart.png"/>" alt=""></a>
                     <div class="cart__price">Cart: <span>$0.00</span></div>
                 </div>
             </div>
@@ -128,7 +130,7 @@
                             <ul>
                                 <li><a href="<c:url value="/cakestore/index.do"/>">Home</a></li>
                                 <li><a href="<c:url value="/cakestore/about.do"/>">About</a></li>
-                                <li><a href="<c:url value="/cakestore/shop.do"/>">Shop</a></li>
+                                <li><a href="<c:url value="/shop/shop.do"/>">Shop</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul class="dropdown">
                                         <li><a href="./shop-details.html">Shop Details</a></li>
@@ -222,8 +224,11 @@
         <div class="search-model">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-switch">+</div>
-                <form class="search-model-form">
-                    <input type="text" id="search-input" placeholder="Search here.....">
+                <form class="search-model-form" action="<c:url value="/shop/shop.do?"/>" method="post">
+                    <input type="text" name="search" id="search-input" placeholder="Search here.....">
+                    <div style="display: none">
+                        <select name="category"><option value="None">None</option></select>
+                    </div>
                 </form>
             </div>
         </div>

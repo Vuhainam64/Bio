@@ -54,6 +54,11 @@ public class DetailController extends HttpServlet {
                 }
                 request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
                 break;
+            default:
+                request.setAttribute("controller", "error");
+                request.setAttribute("action", "error");
+                request.getRequestDispatcher("/WEB-INF/layouts/main.jsp").forward(request, response);
+                break;
         }
     }
 
